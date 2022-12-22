@@ -9,25 +9,31 @@
 
         <script type="text/babel">
             const root = document.getElementById("root");
-            let counter = 0;
-            const render = () => {
-                ReactDOM.render(<Container/>,root);
-            }
-            const Counter = () => {
-                counter = counter+1;
-                render();
-            };
-            const Container = () => ( 
+
+            function App() { 
+                const [minutes, setMinutes] = React.useState(0);
+                const [hours, setHours] = React.useState();
+                const onChange = (e) => {
+                    setMinutes(e.target.value);
+                }
+
+                return(
                 <div>
-                    <h3>
-                        Total Click : {counter}
-                    </h3>
-                    <button onClick={Counter}>
-                         Click me
-                    </button>
+                 <div>
+                    <h1>
+                        Super Converter
+                    </h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input value={minutes} onChange={onChange} id="minutes" placeholder="Minutes" type="number"/>
+                 </div>
+                 <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input value={minutes/60} id="hours"  placeholder="Hours" type="number" onChange={onChange}/>
+                 </div>
                 </div>
-            );
-            render();
+                );
+            };
+            ReactDOM.render(<App/>,root);
         </script>
     </html>
 
